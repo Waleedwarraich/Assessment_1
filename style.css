@@ -125,8 +125,8 @@ h1, h3, h4, h5, h6 {
 
 #welcomeHeading {
     float: left;
-    padding-top: 20%;
-    margin-left: -500px;
+    padding-top: 25%;
+    margin-left: -550px;
     font-size: 50px;
     color: darkcyan;
     flex-wrap: wrap;
@@ -147,11 +147,10 @@ h1, h3, h4, h5, h6 {
 #hikesImage {
     float: left;
     width: 550px;
-    height: 250px;
+    height: 550px;
 }
 
 #hikesPara {
-    display: block;
     text-align: center;
     justify-content: center;
 }
@@ -160,7 +159,7 @@ h1, h3, h4, h5, h6 {
     width: 100%;
 }
 
-input[type=text], select, textarea,input[type=number] {
+input[type=text], select, textarea,input[type=number],input[type=email],input[type=password] {
     width: 100%; 
     padding: 12px; 
     border: 1px solid #ccc; 
@@ -385,4 +384,73 @@ input[type=submit]:hover {
     margin-top: 10px;
     font-size: 18px;
     text-align: center;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* styling navlist */
+#navlist {
+    background-color: #0074D9;
+    position: absolute;
+    width: 100%;
+}
+
+/* styling navlist anchor element */
+#navlist a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.navlist-right {
+    float: right;
+}
+
+/* hover effect of navlist anchor element */
+#navlist a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* styling search bar */
+.search input[type=text] {
+    width: 300px;
+    height: 25px;
+    border-radius: 25px;
+    border: none;
+}
+
+.search {
+    float: right;
+    margin: 7px;
+}
+
+.search button {
+    background-color: #0074D9;
+    color: #f2f2f2;
+    float: right;
+    padding: 5px 10px;
+    margin-right: 16px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+/* styling logo and tag */
+.content {
+    padding-top: 40px;
+}
+
+.content h1 {
+    color: green;
 }

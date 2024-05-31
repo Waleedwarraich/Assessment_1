@@ -5,7 +5,12 @@ include "includes/db_connect.inc";
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    // Check if user_id is set in the session
+    if (!isset($_SESSION['user_id'])) {
+        $_SESSION['message'] = array('type' => 'error', 'text' => 'User not logged in.');
+        header("Location: add.php");
+        exit();
+    }
 
     if (empty($_POST['hikeName']) || empty($_POST['description']) || empty($_POST['imageCaption']) || empty($_POST['distance']) || empty($_POST['location']) || empty($_POST['level'])) {
         $_SESSION['message'] = array('type' => 'error', 'text' => 'All fields are required.');
@@ -19,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $distance = $_POST['distance'];
     $location = $_POST['location'];
     $level = $_POST['level'];
+    $user_id = $_SESSION['user_id']; // Retrieve user_id from session
 
     // File upload
     $targetDir = "images/";
@@ -50,9 +56,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Upload file
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
         // SQL query
-        $sql = "INSERT INTO hikes (hikename, description, image, caption, distance, location, level) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO hikes (user_id, hikename, description, image, caption, distance, location, level) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssss", $hikeName, $description, $targetFile, $imageCaption, $distance, $location, $level);
+        $stmt->bind_param("isssssss", $user_id, $hikeName, $description, $targetFile, $imageCaption, $distance, $location, $level);
 
         // Execute query
         if ($stmt->execute()) {
